@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>CSS等分圆</title>
+    <meta charset="utf-8" />
+    <style type="text/css">
+		.container {
+		 display: block;
+		 width: 520px;
+		 height: 520px;
+		 border-radius: 520px;
+		 overflow: hidden;
+		 position: relative;
+		 background-color: #f0beff;
+		}
+
+		.item {
+		 position: absolute;
+		 display: flex;
+		 width: 50%;
+		 height: 50%;
+		 border: 2px solid #1f1172;
+		 color: black;
+		 background-color: #343baa;
+		 top: 0;
+		 right: 0;
+		 transform-origin: 0% 100%;
+		 justify-content: center;
+		 align-items: center;
+		}
+
+		.item-skew:nth-child(1) {
+		 -webkit-transform: rotate(72deg) skewY(-18deg);
+		 transform: rotate(72deg) skewY(-18deg);
+		}
+
+		.item-skew:nth-child(2) {
+		 -webkit-transform: rotate(144deg) skewY(-18deg);
+		 transform: rotate(144deg) skewY(-18deg);
+		}
+		
+		.item-skew:nth-child(3) {
+		 -webkit-transform: rotate(216deg) skewY(-18deg);
+		 transform: rotate(216deg) skewY(-18deg);
+		}
+		
+		.item-skew:nth-child(4) {
+		 -webkit-transform: rotate(288deg) skewY(-18deg);
+		 transform: rotate(288deg) skewY(-18deg);
+		}
+		
+		.item-skew:nth-child(5) {
+		 -webkit-transform: rotate(360deg) skewY(-18deg);
+		 transform: rotate(360deg) skewY(-18deg);
+		}
+		
+		.item-skew:nth-child(6) {
+		 -webkit-transform: rotate(360deg) skewY(-18deg);
+		 transform: rotate(360deg) skewY(-18deg);
+		}
+
+		.item-content {
+		 display: flex;
+		 width: 100px;
+		 align-items: center;
+		 flex-direction: column;
+		 font-size: 2rem;
+		 font-weight: bold;
+		 transform-origin: center center;
+		 //skewY(90 - 60 deg) rotate(60 / 2deg) translate(-95px, 62px)
+		 transform: skewY(30deg) rotate(30deg) translate(-95px, 62px);
+		 position: absolute;
+		 right: 0;
+		 bottom: 0;
+
+		 i {
+		   font-size: 4rem;
+		 }
+		}
+      .circle {
+        position: absolute;
+        border-radius: 50%;
+        border: 1px solid black;
+        background-color: yellow;
+        width: 100px;
+        height: 100px;
+        z-index: 1;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-weight: bold;
+        font-size: 1.2rem;
+        transition: transform 1s;
+      }
+
+    </style>
+	<script>
+	  var co = ["Laya漢堡","麥味登","美而美","美之城","Qburger"];
+	  var angle = 36;
+	  var circle;
+	  function start(){
+		  circle = document.querySelector('.circle');
+		  circle.addEventListener("click",ro,false);
+		  
+	  }
+	  function ro(){
+			
+        // 移除 class，方便下次可以重新觸發動畫
+        setTimeout(() => {
+		  angle += (72*(Math.floor(Math.random()*5)+1)+360*3);
+          circle.style.transform = 'translate(-50%, -50%) rotate('+angle+'deg)';
+		  document.getElementById( "s").innerHTML = co[Math.floor(((angle-36)%360)/72)];
+			if(co[Math.floor(((angle-36)%360)/72)] === "美而美")
+				document.getElementById( "網頁").setAttribute("action","美而美餐點.html");
+			else if(co[Math.floor(((angle-36)%360)/72)] === "麥味登")
+				document.getElementById( "網頁").setAttribute("action","美而美餐點.html");
+			else if(co[Math.floor(((angle-36)%360)/72)] === "美之城")
+				document.getElementById( "網頁").setAttribute("action","美而美餐點.html");
+			else if(co[Math.floor(((angle-36)%360)/72)] === "Laya漢堡")
+				document.getElementById( "網頁").setAttribute("action","美而美餐點.html");
+			else if(co[Math.floor(((angle-36)%360)/72)] === "Qburger")
+				document.getElementById( "網頁").setAttribute("action","美而美餐點.html");
+        }); 
+		//document.getElementById( "s").innerHTML = " " + angle + " " + co[Math.floor(((angle-36)%360)/72)];
+
+
+	  }
+	  window.addEventListener( "load", start, false );
+    </script>
+  </head>
+  <body>
+    <div class="container">
+      <div class="item item-skew">麥味登</div>
+      <div class="item item-skew" style="background-color: pink;">美而美</div>
+      <div class="item item-skew" style="background-color: red;">美之城</div>
+      <div class="item item-skew" style="background-color: purple;">Qburger</div>
+      <div class="item item-skew" style="background-color: white;">Laya漢堡</div>
+	  <div class="circle">start</div>
+    </div>
+	<p id = "s"></p>
+	<form method = "post" action = "#" style = "position: absolute;" id = "網頁">
+        <p style = "position: absolute; top: 90%;">
+            <input type = "submit" value = "確認">
+        </p>
+    </form>
+  </body>
+</html>
