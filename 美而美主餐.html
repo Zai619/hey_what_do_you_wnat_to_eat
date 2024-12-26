@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>美而美主餐菜單</title>
+    <style type="text/css">
+        body {
+              background: #FEFCB3;
+              font-family: Arial, sans-serif;
+              margin: 0;
+              padding: 0;
+          }
+          h1 {
+              margin-top: 3%;
+              color: #E63737;
+              text-align: center;
+              font-size: 50px;
+          }
+          h1 img {
+              margin-left: 10px;
+              margin-top: 1px;
+              width: 55px;
+              height: 55px;
+          }
+          p {
+              color: #ED7C68;
+              text-align: center;
+              font-size: 25px;
+              font-weight: bold;
+          }
+          .container {
+              display: flex;
+              flex-wrap: wrap;
+              justify-content: center;
+              margin-top: 30px;
+          }
+          .category {
+              margin: 20px;
+              text-align: center;
+          }
+          .category label {
+              display: block;
+              color: #ED7C68;
+              font-size: 25px;
+              font-weight: bold;
+              padding: 10px;
+          }
+          .category input {
+              margin-right: 10px;
+          }
+          .category img {
+              vertical-align: middle;
+              width: 40px;
+              height: 40px;
+          }
+          .category-title {
+              color: #E63737;
+              font-size: 40px;
+              font-weight: bold;
+              text-align: center;
+              margin-bottom: 10px;
+          }
+          .submit-btns {
+              text-align: center;
+              margin-top: 30px;
+          }
+          .submit-btns input {
+              width: 150px;
+              height: 50px;
+              color: #E63737;
+              font-size: 25px;
+              font-weight: bold;
+              margin: 10px;
+          }
+		  .hi{ font-size: 35px;color:#E63737;}
+    </style>
+</head>
+
+<body>
+        <h1>美而美<img src="4.png" alt="Logo"></h1>
+        <p>美而美是家喻戶曉的連鎖早餐店，以親民的價格與快速的服務深受歡迎。<br></br>提供多樣化的早餐選擇，從中式蛋餅到西式漢堡，搭配香濃飲品，滿足不同口味需求，是忙碌早晨的最佳選擇。</p>
+        <p class="hi">請勾選想要的餐點</p>
+        
+        <form method="post" action="s1131422_HW2.php">
+            <div class="container">
+                <div class="category">
+                    <div class="category-title">蛋餅<img src="egg.png" alt="Burger"></div>
+                    <label><input name="mainQurberger[]" type="checkbox" value="牛肉起司堡">原味蛋餅 $20</label>
+                    <label><input name="mainQurberger[]" type="checkbox" value="麥香雞堡">蔬菜蛋餅 $25</label>
+                    <label><input name="mainQurberger[]" type="checkbox" value="香煎豬堡">火腿蛋餅 $25</label>
+                    <label><input name="mainQurberger[]" type="checkbox" value="卡啦雞腿堡">起司蛋餅 $25</label>
+                    <label><input name="mainQurberger[]" type="checkbox" value="花生熔岩卡啦雞堡">玉米蛋餅 $25</label>
+                </div>
+
+                <div class="category">
+                    <div class="category-title">吐司<img src="toast.png" alt="Sandwich"></div>
+					<label><input name="mainQurberger[]" type="checkbox" value="里肌豬排三明治"><span>考煎蛋吐司 $20</span></label>
+                    <label><input name="mainQurberger[]" type="checkbox" value="鮪魚三明治">火腿蛋吐司 $25</label>
+                    <label><input name="mainQurberger[]" type="checkbox" value="經典火腿蛋三明治">薯餅蛋吐司 $30</label>
+                    <label><input name="mainQurberger[]" type="checkbox" value="肉鬆三明治">豬排蛋吐司 $35</label>
+                    <label><input name="mainQurberger[]" type="checkbox" value="培根蛋三明治">總匯吐司 $45</label>
+                </div>
+
+                <div class="category">
+                    <div class="category-title">抓餅<img src="burrito(1).png" alt="Egg"></div>
+                    <label><input name="mainQurberger[]" type="checkbox" value="培根蛋餅">抓餅蛋 $35</label>
+                    <label><input name="mainQurberger[]" type="checkbox" value="肉鬆蛋餅">起司蛋抓餅 $40</label>
+                    <label><input name="mainQurberger[]" type="checkbox" value="起司蛋餅">鮪魚蛋抓餅 $45</label>
+                    <label><input name="mainQurberger[]" type="checkbox" value="鮪魚蛋餅">培根蛋抓餅 $45</label>
+                    <label><input name="mainQurberger[]" type="checkbox" value="玉米蛋餅">燻雞蛋抓餅 $45</label>
+                </div>
+
+                <div class="category">
+                    <div class="category-title">乳酪餅<img src="cheese.png" alt="Noodle"></div>
+                    <label><input name="mainQurberger[]" type="checkbox" value="椒麻炒泡麵">夾蛋乳酪餅 $25</label>
+                    <label><input name="mainQurberger[]" type="checkbox" value="招牌炒泡麵">起司蔬菜乳酪餅 $35</label>
+                    <label><input name="mainQurberger[]" type="checkbox" value="宮保雞丁鐵板麵">培根乳酪餅 $35</label>
+                    <label><input name="mainQurberger[]" type="checkbox" value="黑胡椒鐵板麵">火腿乳酪餅 $35</label>
+                    <label><input name="mainQurberger[]" type="checkbox" value="蘑菇鐵板麵">豬排乳酪餅 $40</label>
+                </div>
+
+                <div class="category">
+                    <div class="category-title">鐵板麵<img src="noodle.png" alt="Burrito"></div>
+                    <label><input name="mainQurberger[]" type="checkbox" value="黃金脆雞捲餅">蘑菇麵 $65</label>
+                    <label><input name="mainQurberger[]" type="checkbox" value="德式香腸捲餅">黑胡椒麵 $65</label>
+                    <label><input name="mainQurberger[]" type="checkbox" value="蜜汁嫩雞腿捲餅">肉醬椒麵 $65</label>
+                    <label><input name="mainQurberger[]" type="checkbox" value="田園蔬菜捲餅">白醬椒麵 $65</label>
+                    <label><input name="mainQurberger[]" type="checkbox" value="卡咖雞腿捲餅">宮保雞丁麵 $65</label>
+                </div>
+            </div>
+            
+            <div class="submit-btns">
+                <input type="submit" value="Submit">
+                <input type="reset" value="Clear">
+            </div>
+        </form>
+   </body>
+</html>

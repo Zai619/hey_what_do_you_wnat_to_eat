@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>早安美之城主餐菜單</title>
+    <style type="text/css">
+        body {
+              background: #F5F2EA;
+              font-family: Arial, sans-serif;
+              margin: 0;
+              padding: 0;
+          }
+          h1 {
+              margin-top: 3%;
+              color: #C54129;
+              text-align: center;
+              font-size: 50px;
+          }
+          h1 img {
+              margin-left: 10px;
+              margin-top: 1px;
+              width: 55px;
+              height: 55px;
+          }
+          p {
+              color: #ED7C68;
+              text-align: center;
+              font-size: 25px;
+              font-weight: bold;
+          }
+          .container {
+              display: flex;
+              flex-wrap: wrap;
+              justify-content: center;
+              margin-top: 30px;
+          }
+          .category {
+              margin: 20px;
+              text-align: center;
+          }
+          .category label {
+              display: block;
+              color: #ED7C68;
+              font-size: 25px;
+              font-weight: bold;
+              padding: 10px;
+          }
+          .category input {
+              margin-right: 10px;
+          }
+          .category img {
+              vertical-align: middle;
+              width: 40px;
+              height: 40px;
+          }
+          .category-title {
+              color: #C54129;
+              font-size: 40px;
+              font-weight: bold;
+              text-align: center;
+              margin-bottom: 10px;
+          }
+          .submit-btns {
+              text-align: center;
+              margin-top: 30px;
+          }
+          .submit-btns input {
+              width: 150px;
+              height: 50px;
+              color: #C54129;
+              font-size: 25px;
+              font-weight: bold;
+              margin: 10px;
+          }
+		  .hi{ font-size: 35px;color:#C54129;}
+    </style>
+</head>
+
+<body>
+        <h1>早安美之城<img src="2.png" alt="Logo"></h1>
+        <p>早安美之城是一家結合中西風味的早餐餐廳，提供多樣化的選擇，從經典中式燒餅到西式三明治，<br></br>搭配現磨咖啡與多款飲品，為每個早晨注入滿滿元氣，讓顧客享受美味與活力的開始。</p>
+        <p class="hi">請勾選想要的餐點</p>
+        
+        <form method="post" action="s1131422_HW2.php">
+            <div class="container">
+                <div class="category">
+                    <div class="category-title">經典漢堡<img src="burger1.png" alt="Burger"></div>
+                    <label><input name="mainQurberger[]" type="checkbox" value="牛肉起司堡">招牌豬肉堡 $40</label>
+                    <label><input name="mainQurberger[]" type="checkbox" value="麥香雞堡">黃金蝦餅堡 $45</label>
+                    <label><input name="mainQurberger[]" type="checkbox" value="香煎豬堡">紐奧良辣雞腿堡 $45</label>
+                    <label><input name="mainQurberger[]" type="checkbox" value="卡啦雞腿堡">鮮嫩豬柳堡 $50</label>
+                    <label><input name="mainQurberger[]" type="checkbox" value="花生熔岩卡啦雞堡">里肌豬排堡 $60</label>
+                </div>
+
+                <div class="category">
+                    <div class="category-title">朝食吐司<img src="sandwich 2.png" alt="Sandwich"></div>
+					<label><input name="mainQurberger[]" type="checkbox" value="里肌豬排三明治"><span>花生吐司 $40</span></label>
+                    <label><input name="mainQurberger[]" type="checkbox" value="鮪魚三明治">巧克力吐司 $40</label>
+                    <label><input name="mainQurberger[]" type="checkbox" value="經典火腿蛋三明治">草莓吐司 $40</label>
+                    <label><input name="mainQurberger[]" type="checkbox" value="肉鬆三明治">奶酥吐司 $40</label>
+                    <label><input name="mainQurberger[]" type="checkbox" value="培根蛋三明治">藍莓乳酪吐司 $45</label>
+                </div>
+
+                <div class="category">
+                    <div class="category-title">蛋餅/蘿蔔糕<img src="egg.png" alt="Egg"></div>
+                    <label><input name="mainQurberger[]" type="checkbox" value="培根蛋餅">港式蘿蔔糕 $35</label>
+                    <label><input name="mainQurberger[]" type="checkbox" value="肉鬆蛋餅">火腿蛋餅 $35</label>
+                    <label><input name="mainQurberger[]" type="checkbox" value="起司蛋餅">薯泥起司蛋餅 $50</label>
+                    <label><input name="mainQurberger[]" type="checkbox" value="鮪魚蛋餅">薯餅蛋餅 $35</label>
+                    <label><input name="mainQurberger[]" type="checkbox" value="玉米蛋餅">鮪魚沙拉蛋餅 $45</label>
+                </div>
+
+                <div class="category">
+                    <div class="category-title">貝果&燒餅<img src="bagel.png" alt="Noodle"></div>
+                    <label><input name="mainQurberger[]" type="checkbox" value="椒麻炒泡麵">藍莓乳酪貝果 $50</label>
+                    <label><input name="mainQurberger[]" type="checkbox" value="招牌炒泡麵">瑞士莓果貝果 $50</label>
+                    <label><input name="mainQurberger[]" type="checkbox" value="宮保雞丁鐵板麵">蘋果核桃貝果 $55</label>
+                    <label><input name="mainQurberger[]" type="checkbox" value="黑胡椒鐵板麵">培根蛋燒餅 $60</label>
+                    <label><input name="mainQurberger[]" type="checkbox" value="蘑菇鐵板麵">厚蛋起司燒餅 $70</label>
+                </div>
+
+                <div class="category">
+                    <div class="category-title">可頌&軟法<img src="croissant.png" alt="Burrito"></div>
+                    <label><input name="mainQurberger[]" type="checkbox" value="黃金脆雞捲餅">蘋果核桃可頌 $55</label>
+                    <label><input name="mainQurberger[]" type="checkbox" value="德式香腸捲餅">薯泥可頌 $55</label>
+                    <label><input name="mainQurberger[]" type="checkbox" value="蜜汁嫩雞腿捲餅">鮪魚沙拉可頌 $60</label>
+                    <label><input name="mainQurberger[]" type="checkbox" value="田園蔬菜捲餅">香蒜法國軟法 $40</label>
+                    <label><input name="mainQurberger[]" type="checkbox" value="卡咖雞腿捲餅">藍莓乳酪軟法 $40</label>
+                </div>
+            </div>
+            
+            <div class="submit-btns">
+                <input type="submit" value="Submit">
+                <input type="reset" value="Clear">
+            </div>
+        </form>
+   </body>
+</html>

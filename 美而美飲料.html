@@ -1,37 +1,101 @@
 <!DOCTYPE html>
 <html>
    <head>
-      <meta charset = "utf-8">
-      <title>麥味登餐點</title>
-	  <style type="text/css">
-		  body{ background:#BFF28C; }
-		  div{margin-right: 50px; float: left;color:#0F660F;font-weight:bold;}
+      <meta charset="utf-8">
+      <title>美而美飲料菜單</title>
+      <style type="text/css">
+          body {
+              background: #FEFCB3;
+              font-family: Arial, sans-serif;
+              margin: 0;
+              padding: 0;
+          }
+          h1 {
+              margin-top: 3%;
+              color: #E63737;
+              text-align: center;
+              font-size: 50px;
+          }
+          h1 img {
+              margin-left: 10px;
+              margin-top: 1px;
+              width: 55px;
+              height: 55px;
+          }
+          p {
+              color: #ED7C68;
+              text-align: center;
+              font-size: 25px;
+              font-weight: bold;
+          }
+          .container {
+              display: flex;
+              flex-wrap: wrap;
+              justify-content: center;
+              margin-top: 30px;
+          }
+          .category {
+              margin: 20px;
+              text-align: center;
+          }
+          .category label {
+              display: block;
+              color: #ED7C68;
+              font-size: 25px;
+              font-weight: bold;
+              padding: 10px;
+          }
+          .category input {
+              margin-right: 10px;
+          }
+          .category img {
+              vertical-align: middle;
+              width: 40px;
+              height: 40px;
+          }
+          .category-title {
+              color: #E63737;
+              font-size: 40px;
+              font-weight: bold;
+              text-align: center;
+              margin-bottom: 10px;
+          }
+          .submit-btns {
+              text-align: center;
+              margin-top: 30px;
+          }
+          .submit-btns input {
+              width: 150px;
+              height: 50px;
+              color: #E63737;
+              font-size: 25px;
+              font-weight: bold;
+              margin: 10px;
+          }
+		  .hi{ font-size: 35px;color:#E63737;}
       </style>
    </head>
    <body>
-      <h1 style="color:#0F660F; text-align: center; font-size:50px;"><img style="margin-left:10px; margin-top:1px; width : 55px ; height : 55px; "src="1.png" >美而美</h1>
-    <strong>請勾選你想要的飲料</strong><br>
-      <form method = "post" action = "#" style = "position: absolute;">
-		<div>
-			<div>
-				<p>
-				   <label>
-					  <input name = "thingsliked" type = "checkbox" value = "Design">紅茶 $15</label><br></br>
-				   <label>
-					  <input name = "thingsliked" type = "checkbox" value = "Design">咖啡 $15</label><br></br>
-				   <label>
-					  <input name = "thingsliked" type = "checkbox" value = "Design">綠茶 $15</label><br></br>
-				   <label>
-					  <input name = "thingsliked" type = "checkbox" value = "Design">奶茶 $15</label><br></br>
-				   <label>
-					  <input name = "thingsliked" type = "checkbox" value = "Design">柳橙汁 $20</label><br></br>
-				</p>
-			</div>
-		</div>
-         <p style = "position: absolute; top: 90%;">
-            <input type = "submit" value = "Submit">
-            <input type = "reset" value = "Clear">
-         </p>
-      </form>
+        <h1>美而美<img src="4.png" alt="Logo"></h1>
+        <p>美而美是家喻戶曉的連鎖早餐店，以親民的價格與快速的服務深受歡迎。<br></br>提供多樣化的早餐選擇，從中式蛋餅到西式漢堡，搭配香濃飲品，滿足不同口味需求，是忙碌早晨的最佳選擇。</p>
+        <p class="hi">請勾選想要的餐點</p>
+        
+        <form method="post" action="#">
+            <div class="container">
+                <div class="category">
+                    <div class="category-title">飲料<img src="drink.png" alt="Drink"></div>
+                    <label><input name="mainQurberger[]" type="checkbox" value="奶茶">紅茶 $15</label>
+                    <label><input name="mainQurberger[]" type="checkbox" value="綠茶">咖啡 $15</label>
+                    <label><input name="mainQurberger[]" type="checkbox" value="紅茶">綠茶 $15</label>
+                    <label><input name="mainQurberger[]" type="checkbox" value="美式咖啡">奶茶 $15</label>
+                    <label><input name="mainQurberger[]" type="checkbox" value="拿鐵">柳橙汁 $20</label>
+                </div>
+            </div>
+            
+            <div class="submit-btns">
+                <input type="submit" value="Submit">
+                <input type="reset" value="Clear">
+            </div>
+        </form>
    </body>
 </html>
