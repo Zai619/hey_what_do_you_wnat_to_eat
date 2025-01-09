@@ -1,45 +1,161 @@
 <!DOCTYPE html>
-<html>
-   <head>
-      <meta charset = "utf-8"><title>專題</title>
-      <style type="text/css">
-		  body{ background:LightCyan; }
-          table,th,td { border:2px solid SteelBlue; }
-          table { width : 900px ; height : 400px; }
-		  td{width : 180px ; height : 80px; color:SteelBlue; font-weight:bold; font-size:20px;}
-		  #table1{ margin-top:50px;
-          #table2 { border-collapse: collapse; }
-		  span{padding-left:10px;}
-      </style>
-   </head>
-   <body>
-        <h1 style="color:navy; text-align: center; font-size:50px;" ><img style="margin-left:10px; margin-top:1px; width : 55px ; height : 55px; "src="sandwich.png" >欸要吃啥!<img style=" width : 55px ; height : 55px; "src="toast.png" ></h1>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>早餐點餐系統</title>
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style type="text/css">
+	 #loginBtn, #registerBtn, #guestBtn {
+        background-color: #A482D7; /* 按鈕背景色 */
+        color: white; /* 按鈕文字顏色 */
+        font-size: 18px; /* 按鈕文字大小 */
+        border: none; /* 去除邊框 */
+        padding: 12px 20px; /* 內邊距 */
+        cursor: pointer; /* 滑鼠移上去顯示點擊圖示 */
+        border-radius: 8px; /* 圓角按鈕 */
+        margin: 5px; /* 按鈕間距 */
+        transition: all 0.3s ease; /* 動畫過渡效果 */
+    }
+
+    #loginBtn:hover, #registerBtn:hover, #guestBtn:hover {
+        background-color: navy; /* 懸停時背景顏色變深 */
+        color: LightCyan; /* 懸停時文字顏色改變 */
+        transform: scale(1.1); /* 懸停時按鈕放大 */
+    }
+        body {
+            background: LightCyan;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            font-family: Arial, sans-serif;
+        }
+        table, th, td {
+            border: 2px solid SteelBlue;
+        }
+        table {
+            width: 1000px;
+            height: 400px;
+            margin: 0 auto;
+        }
+        td {
+            width: 200px;
+            height: 80px;
+            color: SteelBlue;
+            font-weight: bold;
+            font-size: 25px;
+            text-align: center;
+            vertical-align: middle;
+        }
+        h1 {
+            color: navy;
+            text-align: center;
+            font-size: 50px;
+            margin-top: 10%;
+        }
+		h2 {
+            color: #49277C;
+            text-align: center;
+            font-size: 40px;
+            margin-bottom: 20px;
+        }
+        h1 img {
+            width: 55px;
+            height: 55px;
+        }
+        p {
+            color: RoyalBlue;
+            text-align: center;
+            font-size: 25px;
+            font-weight: bold;
+            margin-bottom: 30px;
+        }
+        span {
+            padding-left: 10px;
+        }
+		label {
+            color: #6837B3;
+            text-align: center;
+            font-size: 30px;
 		
-		<p style="color:RoyalBlue; text-align: center; font-size:25px; font-weight:bold;">你是不是常常不知道早餐該吃甚麼呢? 沒關係 我幫你決定!<br></br>以下是<u>元智</u>附近的5間早餐店</p>
-        <table id = "table1" >
-         <tr>
-            <td rowspan="1" colspan="1" style = "text-align: center; vertical-align:middle;"><span>麥味登</span><img style= "width : 55px ; height : 55px; "src="1.png"></td>
-            <td rowspan="1" colspan="3" style = "text-align: center;">西式中式都有，有很多套餐可選擇</td>
-         </tr>
-		 <tr>
-            <td rowspan="1" colspan="1" style = "text-align: center;vertical-align:middle;"><span>美而美</span><img style= "width : 55px ; height : 55px; "src="4.png"></td>
-            <td rowspan="1" colspan="3" style = "text-align: center;">中式，價格實惠歡迎學生前來</td>
-         </tr>
-		 <tr>
-            <td rowspan="1" colspan="1" style = "text-align: center;vertical-align:middle;"><span>Qburger</span><img style= "width : 55px ; height : 55px; "src="3.png"></td>
-            <td rowspan="1" colspan="3" style = "text-align: center;">西式中式都有，座位區很大適合內用</td>
-         </tr>
-		 <tr>
-            <td rowspan="1" colspan="1" style = "text-align: center;vertical-align:middle;"><span>早安美之城</span><img style= "width : 55px ; height : 55px; "src="2.png"></td>
-            <td rowspan="1" colspan="3" style = "text-align: center;">西式中式都有，離學校最近，價格也很親民</td>
-         </tr>
-		 <tr>
-            <td rowspan="1" colspan="1" style = "text-align: center;vertical-align:middle;"><span>拉亞漢堡</span><img style= "width : 55px ; height : 55px; "src="hamburger.png"></td>
-            <td rowspan="1" colspan="3" style = "text-align: center;">西式，漢堡控一定要來吃吃看!</td>
-         </tr>
-         
-      </table>
-      <p></p>
-      
-   </body>
+    </style>
+</head>
+<body>
+    <h1>
+        <img src="sandwich.png" alt="Sandwich">欸要吃啥!
+        <img src="toast.png" alt="Toast">
+    </h1>
+    <p>
+        你是不是常常不知道早餐該吃甚麼呢? 沒關係 我幫你決定!<br>以下是<u>元智</u>附近的5間早餐店
+    </p>
+    <table>
+        <tr>
+            <td><span>麥味登</span><img src="1.png" alt="麥味登" style="width: 55px; height: 55px;"></td>
+            <td colspan="3">西式中式都有，有很多套餐可選擇</td>
+        </tr>
+        <tr>
+            <td><span>美而美</span><img src="4.png" alt="美而美" style="width: 55px; height: 55px;"></td>
+            <td colspan="3">中式，價格實惠歡迎學生前來</td>
+        </tr>
+        <tr>
+            <td><span>Qburger</span><img src="3.png" alt="Qburger" style="width: 55px; height: 55px;"></td>
+            <td colspan="3">西式中式都有，座位區很大適合內用</td>
+        </tr>
+        <tr>
+            <td><span>早安美之城</span><img src="2.png" alt="早安美之城" style="width: 55px; height: 55px;"></td>
+            <td colspan="3">西式中式都有，離學校最近，價格也很親民</td>
+        </tr>
+        <tr>
+            <td><span>拉亞漢堡</span><img src="hamburger.png" alt="拉亞漢堡" style="width: 55px; height: 55px;"></td>
+            <td colspan="3">西式，漢堡控一定要來吃吃看!</td>
+        </tr>
+    </table>
+	<h2><u>登入</u></h2>
+	<form id="loginForm">
+		<p><label for="username">使用者名稱：</label>
+		<input type="text" id="username" name="username" required></p>
+		<p><label for="password">密碼：</label>
+		<input type="password" id="password" name="password" required></p>
+		<br>
+		<button type="button" id="loginBtn">登入</button>
+		<button type="button" id="registerBtn">註冊</button>
+		<button type="button" id="guestBtn">以訪客身份進入</button>
+  </form>
+  <script>
+    // 登入功能
+    $('#loginBtn').on('click', function() {
+      const username = $('#username').val();
+      const password = $('#password').val();
+      $.ajax({
+        url: 'login.php',
+        method: 'POST',
+        data: { username, password },
+        success: function(response) {
+          if (response.success) {
+            alert('登入成功');
+            window.location.href = '/user_system/main/main.html';
+          } else {
+            alert(response.message);
+          }
+        },
+        error: function() {
+          alert('伺服器錯誤，請稍後再試');
+        }
+      });
+    });
+
+    // 跳轉到註冊頁面
+    $('#registerBtn').on('click', function() {
+      window.location.href = '/user_system/register/register.html';
+    });
+
+    // 訪客身份進入
+    $('#guestBtn').on('click', function() {
+      window.location.href = '/user_system/main/main.html?guest=true';
+    });
+  </script>
+</body>
 </html>
