@@ -4,7 +4,23 @@
     <title>CSS等分圆</title>
     <meta charset="utf-8" />
     <style>
+      body {
+        background-color: #ede4fa;
+        margin: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        font-family: Arial, sans-serif;
+      }
+
       .container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .wheel-container {
         display: block;
         width: 520px;
         height: 520px;
@@ -12,6 +28,7 @@
         overflow: hidden;
         position: relative;
         background-color: #f0beff;
+        margin-bottom: 20px;
       }
 
       .item {
@@ -50,20 +67,20 @@
       .item-content {
         transform: rotate(-72deg); /* 讓文字保持正向 */
         color: black;
-        font-size: 1.5rem;
+        font-size: 1.8rem;
         font-weight: bold;
       }
 
       .circle {
         position: absolute;
+        top: 50%;
+        left: 50%;
         border-radius: 50%;
         border: 1px solid black;
-        background-color: yellow;
+        background-color: #c8afee;
         width: 100px;
         height: 100px;
         z-index: 1;
-        top: 50%;
-        left: 50%;
         transform: translate(-50%, -50%);
         display: flex;
         justify-content: center;
@@ -73,9 +90,35 @@
         cursor: pointer;
         transition: transform 1s;
       }
+
+      #s {
+        font-weight: bold;
+        font-size: 2rem;
+        color: #39176c;
+        margin: 20px 0;
+        text-align: center;
+      }
+
+      #sure {
+        background-color: #a482d7; /* 按鈕背景色 */
+        color: white; /* 按鈕文字顏色 */
+        font-size: 18px; /* 按鈕文字大小 */
+        border: none; /* 去除邊框 */
+        padding: 12px 20px; /* 內邊距 */
+        cursor: pointer; /* 滑鼠移上去顯示點擊圖示 */
+        border-radius: 8px; /* 圓角按鈕 */
+        margin: 5px; /* 按鈕間距 */
+        transition: all 0.3s ease; /* 動畫過渡效果 */
+      }
+
+      #sure:hover {
+        background-color: navy; /* 懸停時背景顏色變深 */
+        color: lightcyan; /* 懸停時文字顏色改變 */
+        transform: scale(1.1); /* 懸停時按鈕放大 */
+      }
     </style>
     <script>
-      var co = ["Laya漢堡", "麥味登", "美而美", "美之城", "Qburger"];
+      var co = ["拉亞漢堡", "麥味登", "美而美", "美之城", "Qburger"];
       var angle = 36;
       var circle;
 
@@ -88,7 +131,7 @@
         angle += 72 * (Math.floor(Math.random() * 5) + 1) + 360 * 3;
         circle.style.transform = "translate(-50%, -50%) rotate(" + angle + "deg)";
         const selectedIndex = Math.floor(((angle - 36) % 360) / 72);
-        document.getElementById("s").innerHTML = co[selectedIndex];
+		document.getElementById("s").innerHTML = `恭喜你選到了：${co[selectedIndex]}!`;
         setAction(co[selectedIndex]);
       }
 
@@ -104,7 +147,7 @@
           case "美之城":
             form.setAttribute("action", "早安美之城主餐.html");
             break;
-          case "Laya漢堡":
+          case "拉亞漢堡":
             form.setAttribute("action", "拉亞漢堡.html");
             break;
           case "Qburger":
@@ -118,28 +161,29 @@
   </head>
   <body>
     <div class="container">
-      <div class="item" style="background-color: #54A45C;">
-        <div class="item-content">麥味登</div>
+      <div class="wheel-container">
+        <div class="item" style="background-color: #54a45c;">
+          <div class="item-content">麥味登</div>
+        </div>
+        <div class="item" style="background-color: #fef466;">
+          <div class="item-content">美而美</div>
+        </div>
+        <div class="item" style="background-color: #eb8464;">
+          <div class="item-content">美之城</div>
+        </div>
+        <div class="item" style="background-color: #ebc564;">
+          <div class="item-content">Qburger</div>
+        </div>
+        <div class="item" style="background-color: #67abcf;">
+          <div class="item-content">拉亞漢堡</div>
+        </div>
+        <div class="circle">start</div>
       </div>
-      <div class="item" style="background-color: #FEF466;">
-        <div class="item-content">美而美</div>
-      </div>
-      <div class="item" style="background-color: #EB8464;">
-        <div class="item-content">美之城</div>
-      </div>
-      <div class="item" style="background-color: #EBC564;">
-        <div class="item-content">Qburger</div>
-      </div>
-      <div class="item" style="background-color: #67ABCF;">
-        <div class="item-content">Laya漢堡</div>
-      </div>
-      <div class="circle">start</div>
+	  
+      <p id="s"></p>
+      <form method="get" action="#" id="網頁">
+        <input type="submit" id="sure" value="確認" />
+      </form>
     </div>
-    <p id="s"></p>
-    <form method="get" action="#" style="position: absolute;" id="網頁">
-      <p style="position: absolute; top: 90%;">
-        <input type="submit" value="確認" />
-      </p>
-    </form>
   </body>
 </html>
