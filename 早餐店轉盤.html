@@ -131,7 +131,7 @@
         angle += 72 * (Math.floor(Math.random() * 5) + 1) + 360 * 3;
         circle.style.transform = "translate(-50%, -50%) rotate(" + angle + "deg)";
         const selectedIndex = Math.floor(((angle - 36) % 360) / 72);
-		document.getElementById("s").innerHTML = `恭喜你選到了：${co[selectedIndex]}!`;
+        document.getElementById("s").innerHTML = co[selectedIndex];
         setAction(co[selectedIndex]);
       }
 
@@ -179,7 +179,6 @@
         </div>
         <div class="circle">start</div>
       </div>
-	  
       <p id="s"></p>
       <form method="get" action="#" id="網頁">
         <input type="submit" id="sure" value="確認" />
