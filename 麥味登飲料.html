@@ -74,21 +74,58 @@
           }
 		  .hi{ font-size: 35px;color:#367140;}
       </style>
+	   <script>
+	  	 var pc = window.prompt("請輸入你的預算");
+		   function limitCheckboxSelection(maxSelections, maxPrice) {
+			  const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+			  checkboxes.forEach((checkbox) => {
+				 checkbox.addEventListener('change', () => {
+					const checkedItems = document.querySelectorAll('input[type="checkbox"]:checked');
+					const checkedCount = checkedItems.length;
+					let validSelection = true;
+
+					// Check if any selected item's price exceeds the limit
+					checkedItems.forEach((item) => {
+					   const price = parseInt(item.getAttribute('data-price'), 10);
+					   if (price > maxPrice) {
+						  validSelection = false;
+					   }
+					});
+
+					if (!validSelection) {
+					   alert(`你的預算只有${maxPrice} 元喔！`);
+					   checkbox.checked = false;
+					   return;
+					}
+
+					if (checkedCount > maxSelections) {
+					   alert(`最多只能選擇 ${maxSelections} 項餐點喔！`);
+					   checkbox.checked = false;
+					}
+				 });
+			  });
+		   }
+
+		   window.onload = function () {
+
+			  limitCheckboxSelection(6, parseInt(pc)); // 限制最多選擇 6 項且價格在 50 元以下
+		   };
+	  </script>
    </head>
    <body>
         <h1>麥味登<img src="3.png" alt="Logo"></h1>
         <p>麥味登是一家提供多樣早餐選擇的店鋪，專注於新鮮、營養的餐點，從經典三明治到多種口味的麵包，讓顧客享受快速又美味的早餐。</p>
         <p class="hi">請勾選想要的餐點</p>
         
-        <form method="post" action="#">
+        <form method="post" action="動態轉盤.html">
             <div class="container">
                 <div class="category">
                     <div class="category-title">飲料<img src="drink.png" alt="Drink"></div>
-                    <label><input name="mainQurberger[]" type="checkbox" value="紅茶拿鐵">紅茶拿鐵 $35</label>
-                    <label><input name="mainQurberger[]" type="checkbox" value="錫蘭紅茶">錫蘭紅茶 $20</label>
-                    <label><input name="mainQurberger[]" type="checkbox" value="冰釀綠茶 ">冰釀綠茶 $20</label>
-                    <label><input name="mainQurberger[]" type="checkbox" value="英式奶茶">英式奶茶 $25</label>
-                    <label><input name="mainQurberger[]" type="checkbox" value="無糖豆漿">無糖豆漿 $20</label>
+                    <label><input name="mainQurberger[]" type="checkbox" value="紅茶拿鐵" data-price="35">紅茶拿鐵 $35</label>
+                    <label><input name="mainQurberger[]" type="checkbox" value="錫蘭紅茶" data-price="20">錫蘭紅茶 $20</label>
+                    <label><input name="mainQurberger[]" type="checkbox" value="冰釀綠茶" data-price="20">冰釀綠茶 $20</label>
+                    <label><input name="mainQurberger[]" type="checkbox" value="英式奶茶" data-price="25">英式奶茶 $25</label>
+                    <label><input name="mainQurberger[]" type="checkbox" value="無糖豆漿" data-price="20">無糖豆漿 $20</label>
                 </div>
             </div>
             
