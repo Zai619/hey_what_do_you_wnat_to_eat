@@ -75,6 +75,43 @@
           }
 		  .hi{ font-size: 35px;color:#C54129;}
     </style>
+    <script>
+	  	 var pc = window.prompt("請輸入你的預算");
+		   function limitCheckboxSelection(maxSelections, maxPrice) {
+			  const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+			  checkboxes.forEach((checkbox) => {
+				 checkbox.addEventListener('change', () => {
+					const checkedItems = document.querySelectorAll('input[type="checkbox"]:checked');
+					const checkedCount = checkedItems.length;
+					let validSelection = true;
+
+					// Check if any selected item's price exceeds the limit
+					checkedItems.forEach((item) => {
+					   const price = parseInt(item.getAttribute('data-price'), 10);
+					   if (price > maxPrice) {
+						  validSelection = false;
+					   }
+					});
+
+					if (!validSelection) {
+					   alert(`你的預算只有${maxPrice} 元喔！`);
+					   checkbox.checked = false;
+					   return;
+					}
+
+					if (checkedCount > maxSelections) {
+					   alert(`最多只能選擇 ${maxSelections} 項餐點喔！`);
+					   checkbox.checked = false;
+					}
+				 });
+			  });
+		   }
+
+		   window.onload = function () {
+
+			  limitCheckboxSelection(6, parseInt(pc)); // 限制最多選擇 6 項且價格在 50 元以下
+		   };
+	  </script>
 </head>
 
 <body>
@@ -82,51 +119,51 @@
         <p>早安美之城是一家結合中西風味的早餐餐廳，提供多樣化的選擇，從經典中式燒餅到西式三明治，<br></br>搭配現磨咖啡與多款飲品，為每個早晨注入滿滿元氣，讓顧客享受美味與活力的開始。</p>
         <p class="hi">請勾選想要的餐點</p>
         
-        <form method="post" action="s1131422_HW2.php">
+        <form method="post" action="動態轉盤.html">
             <div class="container">
                 <div class="category">
                     <div class="category-title">經典漢堡<img src="burger1.png" alt="Burger"></div>
-                    <label><input name="mainQurberger[]" type="checkbox" value="牛肉起司堡">招牌豬肉堡 $40</label>
-                    <label><input name="mainQurberger[]" type="checkbox" value="麥香雞堡">黃金蝦餅堡 $45</label>
-                    <label><input name="mainQurberger[]" type="checkbox" value="香煎豬堡">紐奧良辣雞腿堡 $45</label>
-                    <label><input name="mainQurberger[]" type="checkbox" value="卡啦雞腿堡">鮮嫩豬柳堡 $50</label>
-                    <label><input name="mainQurberger[]" type="checkbox" value="花生熔岩卡啦雞堡">里肌豬排堡 $60</label>
+                    <label><input name="mainQurberger[]" type="checkbox" value="招牌豬肉堡" data-price = "40">招牌豬肉堡 $40</label>
+                    <label><input name="mainQurberger[]" type="checkbox" value="黃金蝦餅堡" data-price = "45">黃金蝦餅堡 $45</label>
+                    <label><input name="mainQurberger[]" type="checkbox" value="紐奧良辣雞腿堡" data-price = "45">紐奧良辣雞腿堡 $45</label>
+                    <label><input name="mainQurberger[]" type="checkbox" value="鮮嫩豬柳堡" data-price = "50">鮮嫩豬柳堡 $50</label>
+                    <label><input name="mainQurberger[]" type="checkbox" value="里肌豬排堡" data-price = "60">里肌豬排堡 $60</label>
                 </div>
 
                 <div class="category">
                     <div class="category-title">朝食吐司<img src="sandwich 2.png" alt="Sandwich"></div>
-					<label><input name="mainQurberger[]" type="checkbox" value="里肌豬排三明治"><span>花生吐司 $40</span></label>
-                    <label><input name="mainQurberger[]" type="checkbox" value="鮪魚三明治">巧克力吐司 $40</label>
-                    <label><input name="mainQurberger[]" type="checkbox" value="經典火腿蛋三明治">草莓吐司 $40</label>
-                    <label><input name="mainQurberger[]" type="checkbox" value="肉鬆三明治">奶酥吐司 $40</label>
-                    <label><input name="mainQurberger[]" type="checkbox" value="培根蛋三明治">藍莓乳酪吐司 $45</label>
+		    <label><input name="mainQurberger[]" type="checkbox" value="花生吐司" data-price = "40">花生吐司 $40</label>
+                    <label><input name="mainQurberger[]" type="checkbox" value="巧克力吐司" data-price = "40">巧克力吐司 $40</label>
+                    <label><input name="mainQurberger[]" type="checkbox" value="草莓吐司" data-price = "40">草莓吐司 $40</label>
+                    <label><input name="mainQurberger[]" type="checkbox" value="奶酥吐司" data-price = "40">奶酥吐司 $40</label>
+                    <label><input name="mainQurberger[]" type="checkbox" value="藍莓乳酪吐司" data-price = "45">藍莓乳酪吐司 $45</label>
                 </div>
 
                 <div class="category">
                     <div class="category-title">蛋餅/蘿蔔糕<img src="egg.png" alt="Egg"></div>
-                    <label><input name="mainQurberger[]" type="checkbox" value="培根蛋餅">港式蘿蔔糕 $35</label>
-                    <label><input name="mainQurberger[]" type="checkbox" value="肉鬆蛋餅">火腿蛋餅 $35</label>
-                    <label><input name="mainQurberger[]" type="checkbox" value="起司蛋餅">薯泥起司蛋餅 $50</label>
-                    <label><input name="mainQurberger[]" type="checkbox" value="鮪魚蛋餅">薯餅蛋餅 $35</label>
-                    <label><input name="mainQurberger[]" type="checkbox" value="玉米蛋餅">鮪魚沙拉蛋餅 $45</label>
+                    <label><input name="mainQurberger[]" type="checkbox" value="港式蘿蔔糕" data-price = "35">港式蘿蔔糕 $35</label>
+                    <label><input name="mainQurberger[]" type="checkbox" value="火腿蛋餅" data-price = "35">火腿蛋餅 $35</label>
+                    <label><input name="mainQurberger[]" type="checkbox" value="薯泥起司蛋餅" data-price = "50">薯泥起司蛋餅 $50</label>
+                    <label><input name="mainQurberger[]" type="checkbox" value="薯餅蛋餅" data-price = "35">薯餅蛋餅 $35</label>
+                    <label><input name="mainQurberger[]" type="checkbox" value="鮪魚沙拉蛋餅" data-price = "45">鮪魚沙拉蛋餅 $45</label>
                 </div>
 
                 <div class="category">
                     <div class="category-title">貝果&燒餅<img src="bagel.png" alt="Noodle"></div>
-                    <label><input name="mainQurberger[]" type="checkbox" value="椒麻炒泡麵">藍莓乳酪貝果 $50</label>
-                    <label><input name="mainQurberger[]" type="checkbox" value="招牌炒泡麵">瑞士莓果貝果 $50</label>
-                    <label><input name="mainQurberger[]" type="checkbox" value="宮保雞丁鐵板麵">蘋果核桃貝果 $55</label>
-                    <label><input name="mainQurberger[]" type="checkbox" value="黑胡椒鐵板麵">培根蛋燒餅 $60</label>
-                    <label><input name="mainQurberger[]" type="checkbox" value="蘑菇鐵板麵">厚蛋起司燒餅 $70</label>
+                    <label><input name="mainQurberger[]" type="checkbox" value="藍莓乳酪貝果" data-price = "50">藍莓乳酪貝果 $50</label>
+                    <label><input name="mainQurberger[]" type="checkbox" value="瑞士莓果貝果" data-price = "50">瑞士莓果貝果 $50</label>
+                    <label><input name="mainQurberger[]" type="checkbox" value="蘋果核桃貝果" data-price = "55">蘋果核桃貝果 $55</label>
+                    <label><input name="mainQurberger[]" type="checkbox" value="培根蛋燒餅" data-price = "60">培根蛋燒餅 $60</label>
+                    <label><input name="mainQurberger[]" type="checkbox" value="厚蛋起司燒餅" data-price = "70">厚蛋起司燒餅 $70</label>
                 </div>
 
                 <div class="category">
                     <div class="category-title">可頌&軟法<img src="croissant.png" alt="Burrito"></div>
-                    <label><input name="mainQurberger[]" type="checkbox" value="黃金脆雞捲餅">蘋果核桃可頌 $55</label>
-                    <label><input name="mainQurberger[]" type="checkbox" value="德式香腸捲餅">薯泥可頌 $55</label>
-                    <label><input name="mainQurberger[]" type="checkbox" value="蜜汁嫩雞腿捲餅">鮪魚沙拉可頌 $60</label>
-                    <label><input name="mainQurberger[]" type="checkbox" value="田園蔬菜捲餅">香蒜法國軟法 $40</label>
-                    <label><input name="mainQurberger[]" type="checkbox" value="卡咖雞腿捲餅">藍莓乳酪軟法 $40</label>
+                    <label><input name="mainQurberger[]" type="checkbox" value="蘋果核桃可頌" data-price = "55">蘋果核桃可頌 $55</label>
+                    <label><input name="mainQurberger[]" type="checkbox" value="薯泥可頌" data-price = "55">薯泥可頌 $55</label>
+                    <label><input name="mainQurberger[]" type="checkbox" value="鮪魚沙拉可頌" data-price = "60">鮪魚沙拉可頌 $60</label>
+                    <label><input name="mainQurberger[]" type="checkbox" value="香蒜法國軟法" data-price = "40">香蒜法國軟法 $40</label>
+                    <label><input name="mainQurberger[]" type="checkbox" value="藍莓乳酪軟法" data-price = "40">藍莓乳酪軟法 $40</label>
                 </div>
             </div>
             
