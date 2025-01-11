@@ -74,21 +74,58 @@
           }
 		  .hi{ font-size: 35px;color:#C54129;}
       </style>
+      <script>
+	  	 var pc = window.prompt("請輸入你的預算");
+		   function limitCheckboxSelection(maxSelections, maxPrice) {
+			  const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+			  checkboxes.forEach((checkbox) => {
+				 checkbox.addEventListener('change', () => {
+					const checkedItems = document.querySelectorAll('input[type="checkbox"]:checked');
+					const checkedCount = checkedItems.length;
+					let validSelection = true;
+
+					// Check if any selected item's price exceeds the limit
+					checkedItems.forEach((item) => {
+					   const price = parseInt(item.getAttribute('data-price'), 10);
+					   if (price > maxPrice) {
+						  validSelection = false;
+					   }
+					});
+
+					if (!validSelection) {
+					   alert(`你的預算只有${maxPrice} 元喔！`);
+					   checkbox.checked = false;
+					   return;
+					}
+
+					if (checkedCount > maxSelections) {
+					   alert(`最多只能選擇 ${maxSelections} 項餐點喔！`);
+					   checkbox.checked = false;
+					}
+				 });
+			  });
+		   }
+
+		   window.onload = function () {
+
+			  limitCheckboxSelection(6, parseInt(pc)); // 限制最多選擇 6 項且價格在 50 元以下
+		   };
+	  </script>
    </head>
    <body>
         <h1>早安美之城<img src="2.png" alt="Logo"></h1>
         <p>早安美之城是一家結合中西風味的早餐餐廳，提供多樣化的選擇，從經典中式燒餅到西式三明治，<br></br>搭配現磨咖啡與多款飲品，為每個早晨注入滿滿元氣，讓顧客享受美味與活力的開始。</p>
         <p class="hi">請勾選想要的餐點</p>
         
-        <form method="post" action="#">
+        <form method="post" action="動態轉盤.html">
             <div class="container">
                 <div class="category">
                     <div class="category-title">飲料<img src="drink.png" alt="Drink"></div>
-                    <label><input name="mainQurberger[]" type="checkbox" value="奶茶">早美紅茶 $20</label>
-                    <label><input name="mainQurberger[]" type="checkbox" value="綠茶">早美皇奶 $25</label>
-                    <label><input name="mainQurberger[]" type="checkbox" value="紅茶">可可亞 $25</label>
-                    <label><input name="mainQurberger[]" type="checkbox" value="美式咖啡">非基因豆漿 $25</label>
-                    <label><input name="mainQurberger[]" type="checkbox" value="拿鐵">台灣四季春 $20</label>
+                    <label><input name="mainQurberger[]" type="checkbox" value="早美紅茶" data-price = "20">早美紅茶 $20</label>
+                    <label><input name="mainQurberger[]" type="checkbox" value="早美皇奶" data-price = "25">早美皇奶 $25</label>
+                    <label><input name="mainQurberger[]" type="checkbox" value="可可亞" data-price = "25">可可亞 $25</label>
+                    <label><input name="mainQurberger[]" type="checkbox" value="非基因豆漿" data-price = "25">非基因豆漿 $25</label>
+                    <label><input name="mainQurberger[]" type="checkbox" value="台灣四季春" data-price = "20">台灣四季春 $20</label>
                 </div>
             </div>
             
