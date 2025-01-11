@@ -66,7 +66,7 @@
 	<script>
 	  var co = ["Laya漢堡","麥味登","美而美","美之城","Qburger"];
 	  <?php
-			$mainQurberger = $_POST['mainQurberger'];
+			$mainQurberger = $_GET['mainQurberger'];
 			$length = count($mainQurberger);
 	  ?>
 	  var rangle = <?php echo 360/$length;?>;
@@ -96,7 +96,7 @@
     
 		<?php
 			print('<div class="container" id = "output">');
-			$mainQurberger = $_POST['mainQurberger'];
+			$mainQurberger = $_GET['mainQurberger'];
 			$length = count($mainQurberger);
 			print('<div class="circle">Start</div>');
 			if($length > 2){
