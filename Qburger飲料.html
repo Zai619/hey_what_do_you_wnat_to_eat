@@ -74,21 +74,58 @@
           }
 		  .hi{ font-size: 35px;color:#C57A34;}
       </style>
+	   <script>
+	  	 var pc = window.prompt("請輸入你的預算");
+		   function limitCheckboxSelection(maxSelections, maxPrice) {
+			  const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+			  checkboxes.forEach((checkbox) => {
+				 checkbox.addEventListener('change', () => {
+					const checkedItems = document.querySelectorAll('input[type="checkbox"]:checked');
+					const checkedCount = checkedItems.length;
+					let validSelection = true;
+
+					// Check if any selected item's price exceeds the limit
+					checkedItems.forEach((item) => {
+					   const price = parseInt(item.getAttribute('data-price'), 10);
+					   if (price > maxPrice) {
+						  validSelection = false;
+					   }
+					});
+
+					if (!validSelection) {
+					   alert(`你的預算只有${maxPrice} 元喔！`);
+					   checkbox.checked = false;
+					   return;
+					}
+
+					if (checkedCount > maxSelections) {
+					   alert(`最多只能選擇 ${maxSelections} 項餐點喔！`);
+					   checkbox.checked = false;
+					}
+				 });
+			  });
+		   }
+
+		   window.onload = function () {
+
+			  limitCheckboxSelection(6, parseInt(pc)); // 限制最多選擇 6 項且價格在 50 元以下
+		   };
+	  </script>
    </head>
    <body>
         <h1>Qburger<img src="3.png" alt="Logo"></h1>
         <p>Qburger，一家讓早晨更有活力的早餐店！從經典漢堡到酥香蛋餅，搭配現煮咖啡或濃郁奶茶，<br>讓你快速充電、美味滿分。不管是忙碌的上班族，還是愛睡懶覺的學生，Qburger 都是你的活力補給站！</p>
         <p class="hi">請勾選想要的餐點</p>
         
-        <form method="post" action="#">
+        <form method="post" action="動態轉盤.html">
             <div class="container">
                 <div class="category">
                     <div class="category-title">飲料<img src="drink.png" alt="Drink"></div>
-                    <label><input name="mainQurberger[]" type="checkbox" value="奶茶">奶茶 $30</label>
-                    <label><input name="mainQurberger[]" type="checkbox" value="綠茶">綠茶 $20</label>
-                    <label><input name="mainQurberger[]" type="checkbox" value="紅茶">紅茶 $20</label>
-                    <label><input name="mainQurberger[]" type="checkbox" value="美式咖啡">美式咖啡 $50</label>
-                    <label><input name="mainQurberger[]" type="checkbox" value="拿鐵">拿鐵 $65</label>
+                    <label><input name="mainQurberger[]" type="checkbox" value="奶茶" data-price = "30">奶茶 $30</label>
+                    <label><input name="mainQurberger[]" type="checkbox" value="綠茶" data-price = "20">綠茶 $20</label>
+                    <label><input name="mainQurberger[]" type="checkbox" value="紅茶" data-price = "20">紅茶 $20</label>
+                    <label><input name="mainQurberger[]" type="checkbox" value="美式咖啡" data-price = "50">美式咖啡 $50</label>
+                    <label><input name="mainQurberger[]" type="checkbox" value="拿鐵" data-price = "65">拿鐵 $65</label>
                 </div>
             </div>
             
