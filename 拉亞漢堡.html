@@ -74,57 +74,94 @@
           }
 		  .hi{ font-size: 35px;color:#48868D;}
       </style>
+	    <script>
+	  	 var pc = window.prompt("請輸入你的預算");
+		   function limitCheckboxSelection(maxSelections, maxPrice) {
+			  const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+			  checkboxes.forEach((checkbox) => {
+				 checkbox.addEventListener('change', () => {
+					const checkedItems = document.querySelectorAll('input[type="checkbox"]:checked');
+					const checkedCount = checkedItems.length;
+					let validSelection = true;
+
+					// Check if any selected item's price exceeds the limit
+					checkedItems.forEach((item) => {
+					   const price = parseInt(item.getAttribute('data-price'), 10);
+					   if (price > maxPrice) {
+						  validSelection = false;
+					   }
+					});
+
+					if (!validSelection) {
+					   alert(`你的預算只有${maxPrice} 元喔！`);
+					   checkbox.checked = false;
+					   return;
+					}
+
+					if (checkedCount > maxSelections) {
+					   alert(`最多只能選擇 ${maxSelections} 項餐點喔！`);
+					   checkbox.checked = false;
+					}
+				 });
+			  });
+		   }
+
+		   window.onload = function () {
+
+			  limitCheckboxSelection(6, parseInt(pc)); // 限制最多選擇 6 項且價格在 50 元以下
+		   };
+	  </script>
    </head>
    <body>
         <h1>拉亞漢堡<img src="hamburger.png" alt="Logo"></h1>
         <p>拉亞漢堡是一家致力於提供美味漢堡的餐廳，採用新鮮食材，搭配多種口味的漢堡、炸物與飲品，<br></br>讓顧客能夠享受快速又滿足的餐點，無論是經典口味還是創新搭配，都能滿足不同口味的需求。</p>
         <p class="hi">請勾選想要的餐點</p>
         
-        <form method="post" action="s1131422_HW2.php">
+        <form method="post" action="動態轉盤.html">
             <div class="container">
                 <div class="category">
                     <div class="category-title">帕尼尼<img src="pannie.png" alt="Burger"></div>
-                    <label><input name="mainQurberger[]" type="checkbox" value="牛肉起司堡">打拋豬帕尼尼 $40</label>
-                    <label><input name="mainQurberger[]" type="checkbox" value="麥香雞堡">起司芋泥帕尼尼 $45</label>
-                    <label><input name="mainQurberger[]" type="checkbox" value="香煎豬堡">起司姑姑帕尼尼 $45</label>
-                    <label><input name="mainQurberger[]" type="checkbox" value="卡啦雞腿堡">韓式泡菜牛帕尼尼 $50</label>
-                    <label><input name="mainQurberger[]" type="checkbox" value="花生熔岩卡啦雞堡">起司綜合煙燻帕尼尼 $60</label>
+                    <label><input name="mainQurberger[]" type="checkbox" value="打拋豬帕尼尼" data-price = "40">打拋豬帕尼尼 $40</label>
+                    <label><input name="mainQurberger[]" type="checkbox" value="起司芋泥帕尼尼" data-price = "45">起司芋泥帕尼尼 $45</label>
+                    <label><input name="mainQurberger[]" type="checkbox" value="起司姑姑帕尼尼" data-price = "45">起司姑姑帕尼尼 $45</label>
+                    <label><input name="mainQurberger[]" type="checkbox" value="韓式泡菜牛帕尼尼" data-price = "50">韓式泡菜牛帕尼尼 $50</label>
+                    <label><input name="mainQurberger[]" type="checkbox" value="起司綜合煙燻帕尼尼" data-price = "60">起司綜合煙燻帕尼尼 $60</label>
                 </div>
 
                 <div class="category">
                     <div class="category-title">湯種吐司<img src="toast1.png" alt="Sandwich"></div>
-                    <label><input name="mainQurberger[]" type="checkbox" value="里肌豬排三明治">總匯蛋吐司 $60</label>
-                    <label><input name="mainQurberger[]" type="checkbox" value="鮪魚三明治">肉鬆芋泥吐司 $50</label>
-                    <label><input name="mainQurberger[]" type="checkbox" value="經典火腿蛋三明治">鮪魚沙拉吐司 $45</label>
-                    <label><input name="mainQurberger[]" type="checkbox" value="肉鬆三明治">火腿起司吐司 $45</label>
-                    <label><input name="mainQurberger[]" type="checkbox" value="培根蛋三明治">花生吐司 $40</label>
+                    <label><input name="mainQurberger[]" type="checkbox" value="里肌豬排三明治" data-price = "60">總匯蛋吐司 $60</label>
+                    <label><input name="mainQurberger[]" type="checkbox" value="鮪魚三明治" data-price = "50">肉鬆芋泥吐司 $50</label>
+                    <label><input name="mainQurberger[]" type="checkbox" value="經典火腿蛋三明治" data-price = "45">鮪魚沙拉吐司 $45</label>
+                    <label><input name="mainQurberger[]" type="checkbox" value="肉鬆三明治" data-price = "45">火腿起司吐司 $45</label>
+                    <label><input name="mainQurberger[]" type="checkbox" value="培根蛋三明治" data-price = "40">花生吐司 $40</label>
                 </div>
 
                 <div class="category">
                     <div class="category-title">蛋餅<img src="egg.png" alt="Egg"></div>
-                    <label><input name="mainQurberger[]" type="checkbox" value="培根蛋餅">韓式泡菜牛蛋餅 $55</label>
-                    <label><input name="mainQurberger[]" type="checkbox" value="肉鬆蛋餅">肉鬆芋泥蛋餅 $35</label>
-                    <label><input name="mainQurberger[]" type="checkbox" value="起司蛋餅">超濃起司蛋餅 $40</label>
-                    <label><input name="mainQurberger[]" type="checkbox" value="鮪魚蛋餅">打拋豬蛋餅 $40</label>
-                    <label><input name="mainQurberger[]" type="checkbox" value="玉米蛋餅">起司芋泥蛋餅 $45</label>
+                    <label><input name="mainQurberger[]" type="checkbox" value="培根蛋餅" data-price = "55">韓式泡菜牛蛋餅 $55</label>
+                    <label><input name="mainQurberger[]" type="checkbox" value="肉鬆蛋餅" data-price = "35">肉鬆芋泥蛋餅 $35</label>
+                    <label><input name="mainQurberger[]" type="checkbox" value="起司蛋餅" data-price = "40">超濃起司蛋餅 $40</label>
+                    <label><input name="mainQurberger[]" type="checkbox" value="鮪魚蛋餅" data-price = "40">打拋豬蛋餅 $40</label>
+                    <label><input name="mainQurberger[]" type="checkbox" value="玉米蛋餅" data-price = "45">起司芋泥蛋餅 $45</label>
                 </div>
 
                 <div class="category">
                     <div class="category-title">美式漢堡<img src="hamburger.png" alt="Noodle"></div>
-                    <label><input name="mainQurberger[]" type="checkbox" value="椒麻炒泡麵">野菇厚牛堡 $60</label>
-                    <label><input name="mainQurberger[]" type="checkbox" value="招牌炒泡麵">起司厚牛堡 $65</label>
-                    <label><input name="mainQurberger[]" type="checkbox" value="宮保雞丁鐵板麵">起司鱈魚堡 $70</label>
-                    <label><input name="mainQurberger[]" type="checkbox" value="黑胡椒鐵板麵">卡啦雞腿堡 $50</label>
-                    <label><input name="mainQurberger[]" type="checkbox" value="蘑菇鐵板麵">麥香雞堡 $50</label>
+                    <label><input name="mainQurberger[]" type="checkbox" value="椒麻炒泡麵" data-price = "60">野菇厚牛堡 $60</label>
+                    <label><input name="mainQurberger[]" type="checkbox" value="招牌炒泡麵" data-price = "65">起司厚牛堡 $65</label>
+                    <label><input name="mainQurberger[]" type="checkbox" value="宮保雞丁鐵板麵" data-price = "70">起司鱈魚堡 $70</label>
+                    <label><input name="mainQurberger[]" type="checkbox" value="黑胡椒鐵板麵" data-price = "50">卡啦雞腿堡 $50</label>
+                    <label><input name="mainQurberger[]" type="checkbox" value="蘑菇鐵板麵" data-price = "50">麥香雞堡 $50</label>
                 </div>
 
                 <div class="category">
                     <div class="category-title">米堡<img src="burger1.png" alt="Burrito"></div>
-                    <label><input name="mainQurberger[]" type="checkbox" value="黃金脆雞捲餅">燒肉米堡 $55</label>
-                    <label><input name="mainQurberger[]" type="checkbox" value="德式香腸捲餅">韓式泡菜牛米堡 $60</label>
-                    <label><input name="mainQurberger[]" type="checkbox" value="蜜汁嫩雞腿捲餅">海味蝦排米堡 $60</label>
-                    <label><input name="mainQurberger[]" type="checkbox" value="田園蔬菜捲餅">海苔脆雞米堡 $50</label>
-                    <label><input name="mainQurberger[]" type="checkbox" value="卡咖雞腿捲餅">薑燒豬肉米堡 $60</label>
+                    <label><input name="mainQurberger[]" type="checkbox" value="黃金脆雞捲餅" data-price = "55">燒肉米堡 $55</label>
+                    <label><input name="mainQurberger[]" type="checkbox" value="德式香腸捲餅" data-price = "60">韓式泡菜牛米堡 $60</label>
+                    <label><input name="mainQurberger[]" type="checkbox" value="蜜汁嫩雞腿捲餅" data-price = "60">海味蝦排米堡 $60</label>
+                    <label><input name="mainQurberger[]" type="checkbox" value="田園蔬菜捲餅" data-price = "50">海苔脆雞米堡 $50</label>
+                    <label><input name="mainQurberger[]" type="checkbox" value="卡咖雞腿捲餅" data-price = "60">薑燒豬肉米堡 $60</label>
                 </div>
             </div>
             
