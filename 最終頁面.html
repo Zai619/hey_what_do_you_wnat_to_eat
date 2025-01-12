@@ -84,7 +84,7 @@
 				output += ("<p>"+ meals[i] +"</p>");
 			}
 			document.getElementById("out").innerHTML = output;
-			localStorage.setItem('selectedItems', JSON.stringify([]));
+			localStorage.setItem('meals', JSON.stringify([]));
 		}
 	  	window.addEventListener("load", start, false);
 	  </script>
