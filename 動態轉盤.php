@@ -70,7 +70,8 @@
 	<script>
 	  var u = new Array();
 	  var t = new Array();
-	  var minus_money;
+	  var meals = new Array();
+	  var minus_money, order_meal;
 	  <?php
 			$mainQurberger = $_GET['mainQurberger'];
 			$length = count($mainQurberger);
@@ -78,13 +79,13 @@
 	  var rangle = <?php echo 360/$length;?>;
 	  var angle = rangle/2;
 	  var circle;
-	  var pc ,prices;
+	  var pc ,prices,temp_i;
 	  function start(){
 		 //localstorage start
 
 			pc = localStorage.getItem('pc');
 			prices = JSON.parse(localStorage.getItem('prices'));
-
+			temp_i = localStorage.getItem('temp_i');
 			if (pc && prices) {
 				console.log(`預算: ${pc}`);
 				console.log(`選中的價格: ${prices.join(', ')}`);
@@ -95,17 +96,64 @@
 		  circle = document.querySelector('.circle');
 		  circle.addEventListener("click",ro,false);
 		  document.getElementById( "suree").addEventListener("click",cal,false);
+		  document.getElementById( "要主餐").addEventListener("click",again,false);
+		  document.getElementById( "不要主餐").addEventListener("click",drink,false);
+		  document.getElementById( "要飲料").addEventListener("click",wantDrink,false);
+		  document.getElementById( "不要飲料").addEventListener("click",noDrink,false);
 		<?php for ($i = 0; $i < $length; $i++): ?>
 			u[<?php echo $i; ?>] = "<?php echo $mainQurberger[$i]; ?>";
 		<?php endfor; ?>
 		 
 	  }
+	  function drink(){
+		document.getElementById( "s").innerHTML = "你要飲料嗎?";
+	 	document.getElementById( "要主餐").style.display = "none";
+   	    document.getElementById( "不要主餐").style.display = "none";
+		document.getElementById( "要飲料").style.display = "block";
+		document.getElementById( "不要飲料").style.display = "block";
+	  }
+	  function noDrink(){
+	 	document.getElementById( "sure").style.display = "block";
+		document.getElementById( "要飲料").style.display = "none";
+		document.getElementById( "不要飲料").style.display = "none";
+		document.getElementById( "網頁").setAttribute("action","最終頁面.html");
+	  }
+	  function wantDrink(){
+		document.getElementById( "s").innerHTML = "你要飲料嗎?";
+		document.getElementById( "要飲料").style.display = "none";
+		document.getElementById( "不要飲料").style.display = "none";
+		document.getElementById( "sure").style.display = "block";
+		document.getElementById( "網頁").setAttribute("action","麥味登飲料.html");
+	  }
+	  function again(){
+	 	document.getElementById( "要主餐").style.display = "none";
+   	    document.getElementById( "不要主餐").style.display = "none";
+		document.getElementById( "suree").style.display = "block";
+	  }
 	  function cal(){
 		  pc -= prices[minus_money];
-		  if(pc > 60) document.getElementById( "網頁").setAttribute("action","麥味登主餐.html");//之後
-		  else document.getElementById( "網頁").setAttribute("action","專題.html");//要改連結
-		  document.getElementById( "suree").style.display = "none";
-		  document.getElementById( "sure").style.display = "block";
+		  //meals[temp_i] = order_meal;
+		  let storedArray = JSON.parse(localStorage.getItem('meals')) || [];
+		  storedArray.push(order_meal);
+		  localStorage.setItem('meals', JSON.stringify(storedArray));
+		  console.log("目前 localStorage 中的陣列：", storedArray);
+		  //temp_i++;
+		  localStorage.setItem('temp_i', temp_i);
+		  localStorage.setItem('pc', pc);
+		  alert(pc);
+		  if(pc >= 35){ 
+			document.getElementById( "s").innerHTML = "你要再轉一份主餐嗎?";
+			  document.getElementById( "suree").style.display = "none";
+			  document.getElementById( "要主餐").style.display = "block";
+			  document.getElementById( "不要主餐").style.display = "block";
+			//document.getElementById( "網頁").setAttribute("action","麥味登主餐.html");
+		  }
+		  else{
+			  document.getElementById( "網頁").setAttribute("action","最終頁面.html");//要改連結
+			  document.getElementById( "suree").style.display = "block";
+			  document.getElementById( "要主餐").style.display = "none";
+			  document.getElementById( "不要主餐").style.display = "none";
+		  }
 	  }
 	  function ro(){
 			
@@ -115,6 +163,7 @@
           circle.style.transform = 'translate(-50%, -50%) rotate('+angle+'deg)';
 		  document.getElementById( "s").innerHTML = u[Math.floor(((angle-(rangle/2))%360)/rangle)];
 		  minus_money = Math.floor(((angle-(rangle/2))%360)/rangle);
+		  order_meal = u[Math.floor(((angle-(rangle/2))%360)/rangle)];
         }); 
 		//document.getElementById( "s").innerHTML = u[Math.floor(((angle-(rangle/2))%360)/rangle)];
 	  }
@@ -142,7 +191,7 @@
 			print('</div>');
 			print('<p id = "s"></p>');
 			print('<input type="button" id="suree" value="確認" />');
-			print('<form method="get" action="#" id="網頁"><input type="submit" id="sure" value="送出" style = "display: none; background-color: yellow;"/></form>');
+			print('<form method="get" action="#" id="網頁"><input style = "display:none;background-color:pink;" type="button" id="不要飲料" value="不要" /><input style = "display:none;background-color:pink;" type="button" id="要飲料" value="要" /><input style = "display:none;background-color:pink;" type="button" id="要主餐" value="要" /><input style = "display:none;background-color:pink;" type="button" id="不要主餐" value="不要" /><input type="submit" id="sure" value="下一步" style = "display: none; background-color: yellow;"/></form>');
 		?>
 	
     
