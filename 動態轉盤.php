@@ -61,10 +61,14 @@
 			font-size: 1.2rem;
 			transition: transform 1s;
        }
-
+	   .itext{
+		   position:relative;
+		   top:50px;
+		   left:-40px;
+	   }
 	</style>
 	<script>
-	  var co = ["Laya漢堡","麥味登","美而美","美之城","Qburger"];
+	  var u = new Array();
 	  <?php
 			$mainQurberger = $_GET['mainQurberger'];
 			$length = count($mainQurberger);
@@ -75,7 +79,9 @@
 	  function start(){
 		  circle = document.querySelector('.circle');
 		  circle.addEventListener("click",ro,false);
-		  
+		<?php for ($i = 0; $i < $length; $i++): ?>
+			u[<?php echo $i; ?>] = "<?php echo $mainQurberger[$i]; ?>";
+		<?php endfor; ?>
 	  }
 	  function ro(){
 			
@@ -83,9 +89,9 @@
         setTimeout(() => {
 		  angle += (rangle*(Math.floor(Math.random()*<?php echo $length;?>)+1)+360*3);
           circle.style.transform = 'translate(-50%, -50%) rotate('+angle+'deg)';
-		  //document.getElementById( "s").innerHTML = co[Math.floor(((angle-36)%360)/72)];
+		  document.getElementById( "s").innerHTML = u[Math.floor(((angle-(rangle/2))%360)/rangle)];
         }); 
-		//document.getElementById( "s").innerHTML = " " + angle + " " + co[Math.floor(((angle-36)%360)/72)];
+		//document.getElementById( "s").innerHTML = u[Math.floor(((angle-(rangle/2))%360)/rangle)];
 
 
 	  }
@@ -102,16 +108,15 @@
 			if($length > 2){
 				$deg = 360/$length;
 				for($i = 0;$i < $length;$i++){
-					print('<div class="item" style = "transform: rotate('.$deg*($i+1).'deg) skewY('.($deg - 90).'deg) scale(1.2);">'.$mainQurberger[$i].'</div>'); 
+					print('<div class="item" style = "transform: rotate('.(-$deg).'deg);transform: rotate('.$deg*($i).'deg) skewY('.($deg - 90).'deg) scale(1.2);"><p class = "itext">'.$mainQurberger[$i].'</p></div>'); 
 				}
 			}
 			else if($length == 2){
-				for($i = 0;$i < $length;$i++){
-					print('<div style = "width: 260px; height: 520px; background-color: pink;text-align: right;">'.$mainQurberger[0].'</div>'); 
-					print('<div class = "item2" style = "width: 260px; height: 520px; background-color:blue;text-align: left;">'.$mainQurberger[1].'</div>'); 
-				}
+					print('<div style = "width: 260px; height: 520px; background-color: pink;text-align: right;display: flex; align-items: center; justify-content: center;">'.$mainQurberger[1].'</div>'); 
+					print('<div class = "item2" style = "width: 260px; height: 520px; background-color:blue;text-align: left;">'.$mainQurberger[0].'</div>'); 
 			}
 			print('</div>');
+			print('<p id = "s"></p>');
 		?>
 	
     
