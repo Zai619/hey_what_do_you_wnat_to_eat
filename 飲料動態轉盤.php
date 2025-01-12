@@ -80,6 +80,7 @@
 	  var angle = rangle/2;
 	  var circle;
 	  var pc ,prices,temp_i;
+	  var storedArray = JSON.parse(localStorage.getItem('meals')) || [];
 	  function start(){
 		 //localstorage start
 
@@ -118,7 +119,7 @@
 	  function cal(){
 		  pc -= prices[minus_money];
 		  //meals[temp_i] = order_meal;
-		  let storedArray = JSON.parse(localStorage.getItem('meals')) || [];
+		  storedArray = JSON.parse(localStorage.getItem('meals')) || [];
 		  storedArray.push(order_meal);
 		  localStorage.setItem('meals', JSON.stringify(storedArray));
 		  console.log("目前 localStorage 中的陣列：", storedArray);
