@@ -150,7 +150,8 @@
 		  }
 		  else{
 			  document.getElementById( "網頁").setAttribute("action","最終頁面.html");//要改連結
-			  document.getElementById( "suree").style.display = "block";
+			  document.getElementById( "sure").style.display = "block";
+			  document.getElementById( "suree").style.display = "none";
 			  document.getElementById( "要主餐").style.display = "none";
 			  document.getElementById( "不要主餐").style.display = "none";
 		  }
