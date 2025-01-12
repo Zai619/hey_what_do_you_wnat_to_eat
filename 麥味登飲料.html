@@ -75,7 +75,7 @@
 		  .hi{ font-size: 35px;color:#367140;}
       </style>
 	   <script>
-	  	 var pc = window.prompt("請輸入你的預算");
+
 		   function limitCheckboxSelection(maxSelections, maxPrice) {
 			  const checkboxes = document.querySelectorAll('input[type="checkbox"]');
 			  checkboxes.forEach((checkbox) => {
@@ -107,7 +107,8 @@
 		   }
 
 		   window.onload = function () {
-
+			  var pc = localStorage.getItem('pc');
+			  alert("你的預算還有" + pc + "元！");
 			  limitCheckboxSelection(6, parseInt(pc)); // 限制最多選擇 6 項且價格在 50 元以下
 		   };
 	  </script>
@@ -117,7 +118,7 @@
         <p>麥味登是一家提供多樣早餐選擇的店鋪，專注於新鮮、營養的餐點，從經典三明治到多種口味的麵包，讓顧客享受快速又美味的早餐。</p>
         <p class="hi">請勾選想要的餐點</p>
         
-        <form method="post" action="動態轉盤.html">
+        <form method="get" action="飲料動態轉盤.php">
             <div class="container">
                 <div class="category">
                     <div class="category-title">飲料<img src="drink.png" alt="Drink"></div>
