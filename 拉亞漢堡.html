@@ -74,7 +74,7 @@
           }
 		  .hi{ font-size: 35px;color:#48868D;}
       </style>
-	    <script>
+	     <script>
 	  	 var pc = window.prompt("請輸入你的預算");
 		   function limitCheckboxSelection(maxSelections, maxPrice) {
 			  const checkboxes = document.querySelectorAll('input[type="checkbox"]');
@@ -107,8 +107,27 @@
 		   }
 
 		   window.onload = function () {
-
+			  while(pc === null || isNaN(pc) || parseInt(pc) < 35 || pc.trim() === ""){
+				 pc = window.prompt("請輸入你的預算");
+			  }
 			  limitCheckboxSelection(6, parseInt(pc)); // 限制最多選擇 6 項且價格在 50 元以下
+			  //localstorage start
+				const form = document.querySelector('form');
+				
+				form.addEventListener('submit', function (e) {
+					e.preventDefault(); // 防止表單的預設提交
+
+					const checkedItems = document.querySelectorAll('input[type="checkbox"]:checked');
+					const prices = Array.from(checkedItems).map(item => item.getAttribute('data-price'));
+
+					// 儲存到 localStorage
+					localStorage.setItem('pc', pc);
+					localStorage.setItem('prices', JSON.stringify(prices));
+
+					// 繼續表單提交
+					this.submit();
+				});
+				//localstorage end
 		   };
 	  </script>
    </head>
