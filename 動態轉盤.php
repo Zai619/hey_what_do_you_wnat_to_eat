@@ -69,6 +69,8 @@
 	</style>
 	<script>
 	  var u = new Array();
+	  var t = new Array();
+	  var minus_money;
 	  <?php
 			$mainQurberger = $_GET['mainQurberger'];
 			$length = count($mainQurberger);
@@ -76,12 +78,34 @@
 	  var rangle = <?php echo 360/$length;?>;
 	  var angle = rangle/2;
 	  var circle;
+	  var pc ,prices;
 	  function start(){
+		 //localstorage start
+
+			pc = localStorage.getItem('pc');
+			prices = JSON.parse(localStorage.getItem('prices'));
+
+			if (pc && prices) {
+				console.log(`預算: ${pc}`);
+				console.log(`選中的價格: ${prices.join(', ')}`);
+			} else {
+				console.log("無法獲取數據，請返回上一步操作。");
+			}		  
+		//localstorage end
 		  circle = document.querySelector('.circle');
 		  circle.addEventListener("click",ro,false);
+		  document.getElementById( "suree").addEventListener("click",cal,false);
 		<?php for ($i = 0; $i < $length; $i++): ?>
 			u[<?php echo $i; ?>] = "<?php echo $mainQurberger[$i]; ?>";
 		<?php endfor; ?>
+		 
+	  }
+	  function cal(){
+		  pc -= prices[minus_money];
+		  if(pc > 60) document.getElementById( "網頁").setAttribute("action","麥味登主餐.html");//之後
+		  else document.getElementById( "網頁").setAttribute("action","專題.html");//要改連結
+		  document.getElementById( "suree").style.display = "none";
+		  document.getElementById( "sure").style.display = "block";
 	  }
 	  function ro(){
 			
@@ -90,11 +114,11 @@
 		  angle += (rangle*(Math.floor(Math.random()*<?php echo $length;?>)+1)+360*3);
           circle.style.transform = 'translate(-50%, -50%) rotate('+angle+'deg)';
 		  document.getElementById( "s").innerHTML = u[Math.floor(((angle-(rangle/2))%360)/rangle)];
+		  minus_money = Math.floor(((angle-(rangle/2))%360)/rangle);
         }); 
 		//document.getElementById( "s").innerHTML = u[Math.floor(((angle-(rangle/2))%360)/rangle)];
-
-
 	  }
+
 	  window.addEventListener( "load", start, false );
     </script>
 </head>
@@ -117,6 +141,8 @@
 			}
 			print('</div>');
 			print('<p id = "s"></p>');
+			print('<input type="button" id="suree" value="確認" />');
+			print('<form method="get" action="#" id="網頁"><input type="submit" id="sure" value="送出" style = "display: none; background-color: yellow;"/></form>');
 		?>
 	
     
